@@ -2,16 +2,19 @@
   "name": "s64_sillysense",
   "version": "1.0.0",
   "description": "# Project Overview: Silly Sense is a lighthearted web application designed to bring joy and laughter through a collection of silly, dad, and knock-knock jokes. The website aims to be a go-to destination for people looking to brighten their day with quick, fun humor. Whether you're in need of a silly pun, a classic dad joke, or a knock-knock joke, Silly Sense provides an endless stream of chuckles and good vibes, all in one place. The goal is to create an easy-to-use, fun-filled platform that lets users quickly find and share their favorite jokes with friends and family.",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-
+    "start": "node server.js",
+    "dev": "nodemon server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
     "express": "^4.21.2",
+    "mongoose": "^8.12.1",
     "nodemon": "^3.1.9"
   }
 }
