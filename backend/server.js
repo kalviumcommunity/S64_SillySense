@@ -1,42 +1,24 @@
-require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
+require("dotenv").config();
+
+const routes = require("./routes"); // Import CRUD Routes
 
 const app = express();
+app.use(cors());
+app.use(express.json()); // Middleware to parse JSON
+
+// ✅ MongoDB Connection
+mongoose.connect(process.env.MONGO_URI)
+.then(() => console.log("✅ MongoDB Connected Successfully"))
+.catch(error => console.error("❌ MongoDB Connection Error:", error.message));
+
+// ✅ Use the CRUD Routes
+app.use("/api", routes);
+
+app.get("/", (req, res) => res.send("Welcome to Silly Sense API!"));
+
 const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`🚀 Server running on http://localhost:${PORT}`));
 
-// MongoDB Connection
-mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => console.log("✅ MongoDB Connected Successfully"))
-  .catch((err) => console.error("❌ MongoDB Connection Error:", err));
-
-// Home Route with Database Connection Status
-app.get("/", async (req, res) => {
-  const dbStatus = mongoose.connection.readyState;
-  let statusMessage = "";
-
-  switch (dbStatus) {
-    case 0:
-      statusMessage = "🔴 Disconnected";
-      break;
-    case 1:
-      statusMessage = "🟢 Connected";
-      break;
-    case 2:
-      statusMessage = "🟡 Connecting";
-      break;
-    case 3:
-      statusMessage = "🛑 Disconnecting";
-      break;
-    default:
-      statusMessage = "❓ Unknown Status";
-  }
-
-  res.json({ message: "Welcome to Silly Sense!", database_status: statusMessage });
-});
-
-// Start Server
-app.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
-});

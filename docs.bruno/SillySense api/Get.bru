@@ -1,0 +1,22 @@
+meta {
+  name: Get
+  type: http
+  seq: 4
+}
+
+get {
+  url: http://localhost:3000/api/jokes
+  body: json
+  auth: none
+}
+
+body:json {
+  [
+    {
+      "_id": "your-joke-id",
+      "text": "Why don't skeletons fight each other? They don't have the guts!",
+      "category": "Dad Joke",
+      "__v": 0
+    }
+  ]
+}
