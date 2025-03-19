@@ -11,3 +11,5 @@ Joke Rating System: Users can rate jokes with thumbs up or thumbs down, helping 
 Shareable Jokes: Users can share their favorite jokes directly to social media platforms like Facebook, Twitter, or via email.
 Responsive Design: The website will be mobile-friendly, ensuring that users can enjoy a laugh on any device.
 
+## 🚀 Live Demo
+[Silly Sense is live here!](https://silly-sense.pages.dev)
