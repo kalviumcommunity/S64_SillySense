@@ -28,26 +28,27 @@ const Home = () => {
     <div style={styles.container}>
       <motion.div 
         style={styles.content}
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5 }}
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
       >
         <h1 style={styles.header}>Silly Sense 🤣</h1>
         <p style={styles.subHeader}>Your daily dose of laughter, Reddit style.</p>
 
         <motion.div 
           style={styles.jokeContainer}
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.4 }}
+          whileHover={{ scale: 1.02 }}
         >
-          {loading ? <p>Loading joke...</p> : <p style={styles.jokeText}>{joke}</p>}
+          {loading ? <p style={styles.jokeText}>Loading joke...</p> : <p style={styles.jokeText}>{joke}</p>}
         </motion.div>
 
         <motion.button
           onClick={fetchJoke}
           style={styles.button}
-          whileHover={{ scale: 1.1 }}
+          whileHover={{ scale: 1.1, backgroundColor: "#E03D00" }} // Darker hover effect
           whileTap={{ scale: 0.9 }}
         >
           🔄 Get Another Joke
@@ -66,12 +67,16 @@ const styles = {
     height: "100vh", // Full height of the viewport
     width: "100vw",  // Full width of the viewport
     backgroundColor: "#1A1A1B", // Dark Reddit-style background
+    padding: "20px",
   },
   content: {
     textAlign: "center",
     padding: "40px",
     maxWidth: "600px",
-    width: "90%", // Responsive width
+    width: "100%", // Responsive width
+    backgroundColor: "#292929",
+    borderRadius: "10px",
+    boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
   },
   header: {
     fontSize: "2.5rem",
@@ -86,7 +91,7 @@ const styles = {
   },
   jokeContainer: {
     padding: "20px",
-    backgroundColor: "#292929",
+    backgroundColor: "#373737",
     borderRadius: "10px",
     marginBottom: "20px",
     transition: "transform 0.3s ease-in-out",
@@ -98,6 +103,7 @@ const styles = {
   button: {
     padding: "12px 24px",
     fontSize: "16px",
+    fontWeight: "bold",
     backgroundColor: "#FF4500", // Reddit Orange
     color: "#FFF",
     border: "none",
